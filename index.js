@@ -9,7 +9,13 @@ dotenv.config({path: ".env"});
 connectDB();
 app.use(express.json())
 
-app.use(cors())
+const corsOptions = {
+    origin: 'http://localhost:5173',  // Frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  };
+  
+  app.use(cors(corsOptions));
 
 const task = require('./routes/task');
 
